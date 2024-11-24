@@ -3,6 +3,9 @@ from tkinter import filedialog as fd
 from tkinter import messagebox as mb
 from tkinter import ttk
 import requests
+import pyperclip
+
+
 
 def upliad():
     try:
@@ -15,6 +18,8 @@ def upliad():
                 link = response.json()['link']
                 entry.delete(0,END)
                 entry.insert(0,link)
+                pyperclip.copy(link)
+                mb.showinfo('Ссылка скопирована',f'Ссылка:\n{link}\nскопирована в буфер обмена')
     except Exception as e:
         mb.showerror('Ошибка',f'Произошла ошибка: {e}')
 
